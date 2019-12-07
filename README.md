@@ -30,13 +30,23 @@ Edit this document to include your answers after each question. Make sure to lea
 
 1. What is the DOM?
 
+document object model
+
 2. What is an event?
+
+an event is something the browser does, or something the user does
 
 3. What is an event listener?
 
+a procedure that waits for an event to occur
+
 4. Why would we convert a NodeList into an Array?
 
+because NodeLists are not a JavaScript API, but a browser API
+
 5. What is a component?
+
+a sometime re-usable set pf logic, behaviors and interface elements (UI or API)
 
 ### Git Set up
 
