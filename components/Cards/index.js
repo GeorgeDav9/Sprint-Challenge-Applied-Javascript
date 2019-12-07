@@ -18,22 +18,18 @@
 //
 // Create a card for each of the articles and add the card to the DOM.
 
-const cards = document.querySelector("cards-container");
-
-axios.get ("https://lambda-times-backend.herokuapp.com/articles")
-  .then(response => {
-      console.log(response);
-      Object.values(response.data.articles).forEach(ele => {
-          ele.forEach(ele => {
-            let cards = document.querySelector(".cards-container");
-            cards.appendChild(createArticle(ele));
-          });
-      });
-  })
-
-  .catch(error => {
-      console.log(error);
-  })
+axios.get(`https://lambda-times-backend.herokuapp.com/articles`).then( res =>{
+    console.log('succesful')
+  const keysArray =  Object.keys(res.data.articles)
+    for (let index = 0; index < keysArray.length; index++) {
+        const key = keysArray[index];
+        res.data.articles[`${key}`].forEach(element => {
+            createArticle(element)
+        });
+       }
+    }).catch(err =>{
+      console.log(err, 'failed')
+    })
 
  function createArticle(article){
 
@@ -42,22 +38,24 @@ axios.get ("https://lambda-times-backend.herokuapp.com/articles")
   const headline = document.createElement("div");
   const imgContainer = document.createElement("div");
   const img = document.createElement("img");
-  const span3 = document.createElement("span");
+  const authorName = document.createElement("span");
 
-    card.appendChild(headline);
-    card.appendChild(author);
-    card.appendChild(span3);
-    author.appendChild(imgContainer);
-    imgContainer.appendChild(img);
+  card.classList.add('card')
+  headline.classList.add('headline')
+  author.classList.add('author')
+  imgContainer.classList.add('img-container')
+  img.src = article.authorPhoto
 
-    card.classList.add("card");
-    headline.classList.add("headline");
-    author.classList.add("author");
-    imgContainer.classList.add("img-container");
+  headline.textContent = article.headline
+  authorName.textContent = article.authorName
 
-    img.src = article.authorPhoto;
-    span3.textContent = `By ${article.authorName}`;
-    headline.textContent = article.headline
+const cardContainer = document.querySelector(".cards-container")
 
-    return card;
-  } 
+cardContainer.appendChild(card)
+card.appendChild(headline)
+card.appendChild(author)
+author.appendChild(imgContainer)
+imgContainer.appendChild(img)
+author.appendChild(authorName)
+
+}

@@ -42,7 +42,7 @@ a procedure that waits for an event to occur
 
 4. Why would we convert a NodeList into an Array?
 
-because NodeLiata are not a JavaScript API, but a browser API
+because NodeLists are not a JavaScript API, but a browser API
 
 5. What is a component?
 
